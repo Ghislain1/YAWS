@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using YAWS.Core;
 
-internal class HelpViewModel:IDashbordItem
+internal class HelpViewModel : IDashbordItem
 {
     public HelpViewModel()
     {
-        this.Name = "About";
+        this.Name = "Help";
 
     }
     public string Name { get; }

@@ -41,6 +41,6 @@
       </ItemsControl>
     </Border>
 
-    <ContentControl Content="{Binding CurrentDataTemplateViewModel}" />
+    <ContentControl Content="{Binding SelectedItem}" />
   </DockPanel>
 </Window>

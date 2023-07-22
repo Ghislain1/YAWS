@@ -30,15 +30,22 @@ public class MainViewModel : INotifyPropertyChanged
     public ObservableCollection<IDashbordItem> Items
     {
         get => this.items;
-         
+
     }
     public MainViewModel()
     {
         this.items.Add(new ScanViewModel());
         this.items.Add(new AboutViewModel());
         this.items.Add(new HelpViewModel());
+        this.SelectedItem = this.items.First();
 
     }
+    private IDashbordItem selectedItem;
+    public IDashbordItem SelectedItem { get => selectedItem; set
+        {
+            selectedItem = value;
+            this.OnPropertyChanged();
+        } }
 
 
 

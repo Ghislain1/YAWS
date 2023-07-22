@@ -7,19 +7,19 @@
 // </copyright>
 
 namespace YAWS.Scan;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using YAWS.Core;
 
 internal class ScanViewModel : IDashbordItem
-    {
+{
     public ScanViewModel()
     {
-        this.Name = "About";
+        this.Name = "Scan";
 
     }
     public string Name { get; }
@@ -28,4 +28,3 @@ internal class ScanViewModel : IDashbordItem
 
     public ICommand ChangePageCommand { get; }
 }
- 
