@@ -16,6 +16,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 /// <summary>
 /// Interaction logic for App.xaml
@@ -25,8 +26,26 @@ public partial class App : Application
 
     public App()
     {
-
+        StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
     }
 
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+        StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
+    }
+
+    private void Application_Exit(object sender, ExitEventArgs e)
+    {
+        //_log.Info("Exiting NETworkManager...");
+
+        // Save settings, when the application is normally closed
+       
+
+       // _log.Info("Stop background job (if it exists)...");
+       // _dispatcherTimer?.Stop();
+
+     
+       // _log.Info("Bye!");
+    }
 
 }
