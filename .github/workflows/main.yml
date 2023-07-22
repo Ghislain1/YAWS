@@ -34,11 +34,11 @@ jobs:
       - name: Building Ur Code
         run: |
           dir
-          cd ./src/GhisTrader
+          cd ./src/YAWS
           dotnet build
         
         # Testing your code
-      - name: Testing Ur Code(with the dotnet CLI on GhisTrader.sln)
+      - name: Testing Ur Code(with the dotnet CLI on YAWS.sln)
         run: |
           dir      
           dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
@@ -47,7 +47,7 @@ jobs:
       - name: Upload dotnet test results(Packaging workflow data as artifacts)
         uses: actions/upload-artifact@v3
         with:
-            name: GhisTrader-TestResults-${{ matrix.dotnet-version }}
+            name: YAWS-TestResults-${{ matrix.dotnet-version }}
             path: TestResults-${{ matrix.dotnet-version }}
 
       - name: Generate changelog
@@ -81,7 +81,7 @@ jobs:
       - name: Publish (Release Mode)
         run: |
           dir
-          cd ./src/GhisTrader
+          cd ./src/YAWS
           dotnet publish -v d  -o ${{ github.workspace }}/bin/Publish --configuration Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishReadyToRun=true
       
       

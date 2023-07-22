@@ -4,37 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAWS"
+        xmlns:About="clr-namespace:YAWS.About"
+        xmlns:Help="clr-namespace:YAWS.Help"
+        xmlns:Scan="clr-namespace:YAWS.Scan"
         WindowState="Maximized"
         d:DataContext="{d:DesignInstance local:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
 
-      <!-- NavigationBar : Visible or not -->
-    <Grid Grid.Row="0">
-      <Grid.Style>
-        <Style TargetType="Grid">
-          <Style.Triggers>
-            <DataTrigger Binding="{Binding IsLoggedIn}"
-                         Value="False">
-              <Setter Property="Visibility"
-                      Value="Collapsed" />
-            </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </Grid.Style>
-      <TextBlock Text="HALLLO Naivgation Bar kommt here"></TextBlock>
-    </Grid>
+  <Window.Resources>
+    <DataTemplate DataType="{x:Type About:AboutViewModel}">
+      <About:AboutView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type Help:HelpViewModel}">
+      <Help:HelpView />
+    </DataTemplate>
 
-    <ScrollViewer Grid.Row="1"
-                  VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled">
-           <!--ContentControl due to DataTemplate  in App.xaml-->
-      <ContentControl Content="{Binding CurrentViewModel}" />
-    </ScrollViewer>
-    </Grid>
+    <DataTemplate DataType="{x:Type Scan:ScanViewModel}">
+      <Scan:ScanView />
+    </DataTemplate>
+  </Window.Resources>
+
+  <DockPanel>
+    <Border DockPanel.Dock="Left"
+            BorderBrush="Black"
+            BorderThickness="0,0,1,0">
+      <ItemsControl ItemsSource="{Binding Items}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Button Content="{Binding Name}"
+                    Command="{Binding ChangePageCommand}"
+                    CommandParameter="{Binding }"
+                    Margin="2,5" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </Border>
+
+    <ContentControl Content="{Binding CurrentDataTemplateViewModel}" />
+  </DockPanel>
 </Window>

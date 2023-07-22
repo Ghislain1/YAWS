@@ -39,13 +39,13 @@ public partial class App : Application
         //_log.Info("Exiting NETworkManager...");
 
         // Save settings, when the application is normally closed
-       
 
-       // _log.Info("Stop background job (if it exists)...");
-       // _dispatcherTimer?.Stop();
 
-     
-       // _log.Info("Bye!");
+        // _log.Info("Stop background job (if it exists)...");
+        // _dispatcherTimer?.Stop();
+
+
+        // _log.Info("Bye!");
     }
 
 }

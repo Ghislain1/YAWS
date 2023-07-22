@@ -27,7 +27,7 @@ using System.Windows.Shapes;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow( )
+    public MainWindow()
     {
         InitializeComponent();
         this.Loaded += (_, _) => this.DataContext = new MainViewModel();

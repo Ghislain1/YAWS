@@ -6,15 +6,26 @@
 //  writing by an officer of Ghis. All Rights Reserved.
 // </copyright>
 
-namespace YAWS.Help
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+namespace YAWS.Help;
 
-    internal class HelpViewModel
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using YAWS.Core;
+
+internal class HelpViewModel:IDashbordItem
+{
+    public HelpViewModel()
     {
+        this.Name = "About";
+
     }
+    public string Name { get; }
+
+    public string Description => throw new NotImplementedException();
+
+    public ICommand ChangePageCommand { get; }
 }

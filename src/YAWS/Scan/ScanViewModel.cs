@@ -6,19 +6,18 @@
 //  writing by an officer of Ghis. All Rights Reserved.
 // </copyright>
 
-namespace YAWS.About;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace YAWS.Scan;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 using System.Windows.Input;
 using YAWS.Core;
 
-internal class AboutViewModel : IDashbordItem
-{
-    public AboutViewModel()
+internal class ScanViewModel : IDashbordItem
+    {
+    public ScanViewModel()
     {
         this.Name = "About";
 
@@ -29,3 +28,4 @@ internal class AboutViewModel : IDashbordItem
 
     public ICommand ChangePageCommand { get; }
 }
+ 
