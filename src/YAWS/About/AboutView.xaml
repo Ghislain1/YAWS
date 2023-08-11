@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:YAWS.About"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+  <ScrollViewer>
+
     <Grid>
-    <TextBlock FontSize="50"
-               Text="{Binding}" />
-  </Grid>
+      <TextBlock FontSize="50"
+                 Text="{Binding}" />
+    </Grid>
+    
+  </ScrollViewer>   
 </UserControl>

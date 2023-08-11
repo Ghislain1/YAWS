@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using YAWS.About;
 using YAWS.Core;
 using YAWS.Help;
@@ -25,18 +26,13 @@ using YAWS.Scan;
 [ViewModel]
 public partial class MainViewModel
 {
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private INotifyPropertyChanged? currentViewModel;
-    private bool isLoggedIn;
+
+    [Property]
     private ObservableCollection<IDashbordItem> items = new(new IDashbordItem[] { new ScanViewModel(), new AboutViewModel(), new HelpViewModel() });
-    public ObservableCollection<IDashbordItem> Items
-    {
-        get => this.items;
-
-    }
-
+   
+   
     [Command(CanExecuteMethod = nameof(CanChangePage))]
-    private void ChangePage(object inputParameter)
+    private void ChangePage(object? inputParameter)
     {
         this.SelectedItem = inputParameter as IDashbordItem;
         //  EventAggregator.Publish(new EmployeeSavedEvent(FirstName, LastName));
@@ -49,6 +45,12 @@ public partial class MainViewModel
     }
 
   
-    [Property] private IDashbordItem selectedItem ;
+    [Property] 
+    private IDashbordItem selectedItem ;
+
+    public void Init()
+    {
+        this.SelectedItem ??= this.items.First();
+    }
   
 }

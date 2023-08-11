@@ -23,7 +23,7 @@ public partial class ScanViewModel : IDashbordItem
     
     public string Name { get; } = "Scan";
 
-    public string Description => throw new NotImplementedException();
+    public string Description => "Scan - Description";
 
-    public ICommand ChangePageCommand { get; }
+  
 }
