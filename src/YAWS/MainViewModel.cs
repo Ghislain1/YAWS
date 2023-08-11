@@ -8,7 +8,7 @@
 
 namespace YAWS;
 
-
+using MvvmGen;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,34 +21,34 @@ using YAWS.Core;
 using YAWS.Help;
 using YAWS.Scan;
 
-public class MainViewModel : INotifyPropertyChanged
+// Base of MVVM ==> https://github.com/thomasclaudiushuber/mvvmgen
+[ViewModel]
+public partial class MainViewModel
 {
     public event PropertyChangedEventHandler? PropertyChanged;
     private INotifyPropertyChanged? currentViewModel;
     private bool isLoggedIn;
-    private ObservableCollection<IDashbordItem> items = new ObservableCollection<IDashbordItem>();
+    private ObservableCollection<IDashbordItem> items = new(new IDashbordItem[] { new ScanViewModel(), new AboutViewModel(), new HelpViewModel() });
     public ObservableCollection<IDashbordItem> Items
     {
         get => this.items;
 
     }
-    public MainViewModel()
+
+    [Command(CanExecuteMethod = nameof(CanChangePage))]
+    private void ChangePage(object inputParameter)
     {
-        this.items.Add(new ScanViewModel());
-        this.items.Add(new AboutViewModel());
-        this.items.Add(new HelpViewModel());
-        this.SelectedItem = this.items.First();
-
+        this.SelectedItem = inputParameter as IDashbordItem;
+        //  EventAggregator.Publish(new EmployeeSavedEvent(FirstName, LastName));
     }
-    private IDashbordItem selectedItem;
-    public IDashbordItem SelectedItem { get => selectedItem; set
-        {
-            selectedItem = value;
-            this.OnPropertyChanged();
-        } }
 
+    // [CommandInvalidate(nameof(FirstName))]
+    private bool CanChangePage(object inputParameter)
+    {
+        return inputParameter is IDashbordItem;
+    }
 
-
-
-
+  
+    [Property] private IDashbordItem selectedItem ;
+  
 }

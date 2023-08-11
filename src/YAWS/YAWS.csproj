@@ -11,4 +11,12 @@
     <ProjectReference Include="..\YAWS.Core\YAWS.Core.csproj" />   
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmGen" Version="1.2.1" />
+  </ItemGroup>
+
 </Project>

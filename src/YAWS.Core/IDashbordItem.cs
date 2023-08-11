@@ -11,6 +11,6 @@ public  interface IDashbordItem
 {
     string Name { get; }
     string Description { get; }
-    ICommand ChangePageCommand { get; }
+    
 
 }

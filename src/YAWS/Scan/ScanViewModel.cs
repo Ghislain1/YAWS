@@ -7,6 +7,8 @@
 // </copyright>
 
 namespace YAWS.Scan;
+
+using MvvmGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using YAWS.Core;
 
-internal class ScanViewModel : IDashbordItem
+[ViewModel]
+public partial class ScanViewModel : IDashbordItem
 {
-    public ScanViewModel()
-    {
-        this.Name = "Scan";
-
-    }
-    public string Name { get; }
+    
+    public string Name { get; } = "Scan";
 
     public string Description => throw new NotImplementedException();
 

@@ -8,6 +8,8 @@
 
 namespace YAWS.About;
 
+using MvvmGen;
+using MvvmGen.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +17,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using YAWS.Core;
-
-internal class AboutViewModel : IDashbordItem
+[ViewModel]
+public partial class AboutViewModel : IDashbordItem
 {
-    public AboutViewModel()
-    {
-        this.Name = "About";
+    
+    public string Name { get; } = "About";
 
-    }
-    public string Name { get; }
+    public string Description { get; } = "About - Description";
 
-    public string Description => throw new NotImplementedException();
 
-    public ICommand ChangePageCommand { get; }
+
+
 }

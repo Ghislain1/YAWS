@@ -19,7 +19,6 @@
     <DataTemplate DataType="{x:Type Help:HelpViewModel}">
       <Help:HelpView />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type Scan:ScanViewModel}">
       <Scan:ScanView />
     </DataTemplate>
@@ -27,14 +26,15 @@
 
   <DockPanel>
     <Border DockPanel.Dock="Left"
+            MinWidth="200"
             BorderBrush="Black"
             BorderThickness="0,0,1,0">
-      <ItemsControl ItemsSource="{Binding Items}">
+      <ItemsControl  ItemsSource="{Binding Items}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <Button Content="{Binding Name}"
-                    Command="{Binding ChangePageCommand}"
-                    CommandParameter="{Binding }"
+                    Command="{Binding Path=DataContext.ChangePageCommand , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+                    CommandParameter="{Binding}"
                     Margin="2,5" />
           </DataTemplate>
         </ItemsControl.ItemTemplate>
