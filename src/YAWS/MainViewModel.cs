@@ -36,11 +36,11 @@ public partial class MainViewModel
     //{
     //    this.SelectedItem ??= this.items.First();
     //}
-   
+
     [Command(CanExecuteMethod = nameof(CanChangePage))]
     private void ChangePage(object? inputParameter)
     {
-        if(inputParameter is not IDashbordItem dashbordItem)
+        if (inputParameter is not IDashbordItem dashbordItem)
         {
             return;
         }
@@ -51,14 +51,14 @@ public partial class MainViewModel
         return inputParameter is IDashbordItem;
     }
 
-  
-    [Property] 
-    private IDashbordItem selectedItem ;
+
+    [Property]
+    private IDashbordItem selectedItem;
 
     public void Init()
     {
-      
-       // EventAggregator.Publish(new AppInitEvent());
+
+        // EventAggregator.Publish(new AppInitEvent());
     }
-  
+
 }

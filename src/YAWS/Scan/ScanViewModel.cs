@@ -20,10 +20,10 @@ using YAWS.Core;
 [ViewModel]
 public partial class ScanViewModel : IDashbordItem
 {
-    
+
     public string Name { get; } = "Scan";
 
     public string Description => "Scan - Description";
 
-  
+
 }

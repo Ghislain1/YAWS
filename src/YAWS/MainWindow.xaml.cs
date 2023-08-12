@@ -30,7 +30,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        var  mainViewModel = new MainViewModel( );
+        var mainViewModel = new MainViewModel();
         mainViewModel.Init();
         this.Loaded += (_, _) => this.DataContext = mainViewModel;
     }
