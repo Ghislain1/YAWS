@@ -4,14 +4,106 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:YAWS.About"
+             d:DataContext="{d:DesignInstance local:AboutViewModel}"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <ScrollViewer>
 
     <Grid>
-      <TextBlock FontSize="50"
-                 Text="{Binding}" />
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0"
+            Margin="0,0,0,20">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               Grid.Row="0"
+               Width="128"
+               Height="128"                 
+               VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1"
+                    Margin="20,0,0,0">
+          <TextBlock FontSize="32"
+                     Text="ProjectName"
+                      />
+          <TextBlock Text=" Slogan"
+                     
+                     Margin="0,0,0,5" />
+          <TextBlock Text="{Binding Version}"
+                   
+                     FontWeight="Bold"
+                     VerticalAlignment="Center"
+                     Margin="0,0,0,5" />
+          <TextBlock Text=" License"
+                    
+                     HorizontalAlignment="Left"
+                     Margin="0,0,0,5">
+            <TextBlock.InputBindings>
+              <MouseBinding Command="{Binding OpenWebsiteCommand}"
+                         
+                            MouseAction="LeftClick" />
+            </TextBlock.InputBindings>
+          </TextBlock>
+
+        </StackPanel>
+
+        <DataGrid x:Name="DataGridLibaries"
+                  Grid.Row="4"
+                  ItemsSource="{Binding LibrariesView}"
+                  SelectedItem="{Binding SelectedLibraryInfo}"
+                  Margin="0,0,0,10">
+          <DataGrid.Resources>
+            <Style TargetType="{x:Type ScrollBar}"                        />
+            <ContextMenu x:Key="RowContextMenu"
+                        
+                         MinWidth="150">
+              <MenuItem Header="OpenProject"
+                        Command="{Binding OpenWebsiteCommand}"
+                        CommandParameter="{Binding SelectedLibraryInfo.WebsiteUrl}">
+                <MenuItem.Icon>
+                  <Rectangle Width="16"
+                             Height="16"
+                             Fill=" Gray">
+                    <Rectangle.OpacityMask>
+                      <VisualBrush Stretch="Uniform"
+                                   Visual="{iconPacks:Material Kind=OpenInNew}" />
+                    </Rectangle.OpacityMask>
+                  </Rectangle>
+                </MenuItem.Icon>
+              </MenuItem>
+              <MenuItem Header="OpenLicense"
+                        Command="{Binding OpenWebsiteCommand}"
+                        CommandParameter="{Binding SelectedLibraryInfo.LicenseUrl}">
+                <MenuItem.Icon>
+                  <Rectangle Width="16"
+                             Height="16"
+                             Fill="Gray">
+                    <Rectangle.OpacityMask>
+                      <VisualBrush Stretch="Uniform"
+                                   Visual="{iconPacks:Material Kind=OpenInNew}" />
+                    </Rectangle.OpacityMask>
+                  </Rectangle>
+                </MenuItem.Icon>
+              </MenuItem>
+            </ContextMenu>
+          </DataGrid.Resources>
+        </DataGrid>
+
+      </Grid>
     </Grid>
-    
+
   </ScrollViewer>   
 </UserControl>
