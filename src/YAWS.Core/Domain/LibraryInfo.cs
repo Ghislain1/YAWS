@@ -14,9 +14,6 @@ namespace YAWS.Core.Domain;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
-  
-
-    public record LibraryInfo(string Name, string WebsiteUrl, string Description, string License, string LicenseUrl);
+public record LibraryInfo(string Name, string WebsiteUrl, string Description, string License, string LicenseUrl);
    
 

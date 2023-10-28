@@ -39,8 +39,7 @@
           <TextBlock FontSize="32"
                      Text="ProjectName"
                       />
-          <TextBlock Text=" Slogan"
-                     
+          <TextBlock Text="Slogan"                      
                      Margin="0,0,0,5" />
           <TextBlock Text="{Binding Version}"
                    
