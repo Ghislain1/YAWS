@@ -26,7 +26,7 @@ using YAWS.Help;
 using YAWS.LernLinqWithGavin;
 using YAWS.Scan;
 
- // Linq ==>  https://github.com/GavinLonDigital/LINQExamples_2/blob/main/LINQExamples_2/Program.cs
+// Linq ==>  https://github.com/GavinLonDigital/LINQExamples_2/blob/main/LINQExamples_2/Program.cs
 // Base of MVVM ==> https://github.com/thomasclaudiushuber/mvvmgen
 [ViewModel]
 //[Inject(typeof(IEventAggregator))]
@@ -67,47 +67,48 @@ public partial class MainViewModel
         var employeeListCompare = Data.GetEmployees();
         bool boolSequenceEqual = employeeList.SequenceEqual(employeeListCompare, new EmployeeComparer());
 
-        // employeeList.ForEach(employee => DisplayEmployee(employee));
-
-        //JOIN
-        var resultJoin = employeeList.Join(departmentList, e => e.DepartmentId, d => d.Id, (emp, dept) => new
-        {
-            Id = emp.Id,
-            FirstName = emp.FirstName,
-            LastName = emp.LastName,
-            AnnualSalary = emp.AnnualSalary,
-            DepartmentId = emp.DepartmentId,
-            DepartmentName = dept.LongName
-        }).OrderBy(o => o.DepartmentId).ThenByDescending(o => o.AnnualSalary);
-
-        // GroupJOIN
-        var resultGroupJoin = employeeList.GroupJoin(departmentList, e => e.DepartmentId, d => d.Id, (emp, dept) => new
-        {
-            Id = emp.Id,
-            FirstName = emp.FirstName,
-            LastName = emp.LastName,
-            AnnualSalary = emp.AnnualSalary,
-            DepartmentId = emp.DepartmentId
-            
-        }).OrderBy(o => o.DepartmentId).ThenByDescending(o => o.AnnualSalary);
-
+        employeeList.OrderBy(o => o.DepartmentId).ThenBy(o => o.IsManager).ToList().ForEach(employee => DisplayEmployee(employee));
         Debug.WriteLine("");
-        foreach (var item in resultJoin)
-        {
-            Debug.WriteLine($" Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
-
-        }
+        departmentList.ToList().ForEach(department => DisplayDepartment(department));
         Debug.WriteLine("");
-        foreach (var item in resultJoin)
-        {
-            Debug.WriteLine($" Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
 
-        }
+
+        var resultJoin = departmentList.GroupJoin(employeeList, dept => dept.Id, emp => emp.DepartmentId, (dept, list) => new
+        {
+            EmployeeS = list,
+            DepartmentName = dept.LongName,
+
+        });
+
+        //Debug.WriteLine("");
+        //foreach (var item in resultJoin)
+        //{
+        //    Debug.WriteLine($" Last Name: {item.LastName,-10} Annual Salary: {item.AnnualSalary,10}\tDepartment Name: {item.DepartmentName}");
+
+        //}
         //  resultJoin.ForEach(employee => );
+
+        // Group
+        Debug.WriteLine("Group () - Operators");
+        var groupResult = employeeList.GroupBy(em => em.DepartmentId).OrderBy(o=> o.Key);    
+        foreach (var group in groupResult)
+        {
+            Debug.WriteLine($"GroupNr - {group.Key}");
+            foreach (var employee in group)
+            {
+                DisplayEmployee(employee);
+            }          
+        }
+
 
         void DisplayEmployee(Employee employee)
         {
-            Debug.WriteLine($"{employee.FirstName,-10}{employee.LastName,-10} IsManager: {employee.IsManager,-20}");
+            Debug.WriteLine($"{employee.FirstName,-10}{employee.LastName,-10} IsManager: {employee.IsManager,-8} Salary/year: ${employee.AnnualSalary,-10} Dep-Id: {employee.DepartmentId,-10}");
+        }
+
+        void DisplayDepartment(Department department)
+        {
+            Debug.WriteLine($"Unique-Key: {department.Id,-2} {department.LongName,-10}({department.ShortName})  ");
         }
 
     }
